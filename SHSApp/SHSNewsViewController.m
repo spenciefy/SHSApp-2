@@ -10,6 +10,7 @@
 #import <UIImageView+WebCache.h>
 #import "SVProgressHUD.h"
 #import "SHSArticleViewController.h"
+#include "REMenu.h"
 
 @interface SHSNewsViewController ()
 
@@ -18,6 +19,8 @@
 @implementation SHSNewsViewController{
     int numberToReload;
     Article *selectedArticle;
+    REMenu *menu;
+    BOOL menuShown;
 }
 @synthesize selectedSection;
 @synthesize articles;
@@ -44,6 +47,62 @@
     _columnsButton.backgroundColor = [UIColor clearColor];
     numberToReload = 10;
     [self setSelectedSection:@"spotlight"];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed: @"menu.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(toggleMenu)];
+    
+    REMenuItem *Spotlight = [[REMenuItem alloc] initWithTitle:@"Spotlight"
+                                                    subtitle:nil
+                                                       image:nil
+                                            highlightedImage:nil
+                                                      action:^(REMenuItem *item) {
+                                                          [self spotlightAction];
+                                                          NSLog(@"Item: %@", item);
+                                                      }];
+    
+    REMenuItem *Sports = [[REMenuItem alloc] initWithTitle:@"Sports"
+                                                       subtitle:nil
+                                                          image:nil
+                                               highlightedImage:nil
+                                                         action:^(REMenuItem *item) {
+                                                             [self sportsAction];
+                                                             NSLog(@"Item: %@", item);
+                                                         }];
+    
+    REMenuItem *Opinions = [[REMenuItem alloc] initWithTitle:@"Opinion"
+                                                        subtitle:nil
+                                                           image:nil
+                                                highlightedImage:nil
+                                                          action:^(REMenuItem *item) {
+                                                              [self opinionAction];
+                                                              NSLog(@"Item: %@", item);
+                                                          }];
+    
+    REMenuItem *Features = [[REMenuItem alloc] initWithTitle:@"Feature"
+                                                          image:nil
+                                               highlightedImage:nil
+                                                         action:^(REMenuItem *item) {
+                                                             [self featuresAction];
+                                                             NSLog(@"Item: %@", item);
+                                                         }];
+    
+    REMenuItem *Columns = [[REMenuItem alloc] initWithTitle:@"Column"
+                                                          image:nil
+                                               highlightedImage:nil
+                                                         action:^(REMenuItem *item) {
+                                                             [self columnsAction];
+                                                             NSLog(@"Item: %@", item);
+                                                         }];
+    
+    menu = [[REMenu alloc] initWithItems:@[Spotlight, Sports, Opinions, Features, Columns]];
+    menuShown = FALSE;
+}
+
+- (void)toggleMenu {
+    if (!menu.isOpen) {
+        [menu showFromNavigationController:self.navigationController];
+    } else {
+        [menu close];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -259,7 +318,7 @@
     }
 }
 
-- (IBAction)spotlightAction:(id)sender {
+- (IBAction)spotlightAction{
     if(![selectedSection isEqualToString:@"spotlight"]){
         _spotlightButton.backgroundColor = [UIColor lightGrayColor];
         _newsButton.backgroundColor = [UIColor clearColor];
@@ -272,7 +331,7 @@
     }
 }
 
-- (IBAction)newsAction:(id)sender {
+- (IBAction)newsAction{
     if(![selectedSection isEqualToString:@"news"]){
         _newsButton.backgroundColor = [UIColor lightGrayColor];
         _spotlightButton.backgroundColor = [UIColor clearColor];
@@ -285,7 +344,7 @@
     }
 }
 
-- (IBAction)sportsAction:(id)sender {
+- (IBAction)sportsAction{
     if(![selectedSection isEqualToString:@"sports"]){
         _newsButton.backgroundColor = [UIColor clearColor];
         _spotlightButton.backgroundColor = [UIColor clearColor];
@@ -299,7 +358,7 @@
     
 }
 
-- (IBAction)opinionAction:(id)sender {
+- (IBAction)opinionAction{
     if(![selectedSection isEqualToString:@"opinion"]){
         _newsButton.backgroundColor = [UIColor clearColor];
         _spotlightButton.backgroundColor = [UIColor clearColor];
@@ -311,7 +370,7 @@
 
     }
 }
-- (IBAction)featuresAction:(id)sender {
+- (IBAction)featuresAction{
     if(![selectedSection isEqualToString:@"features"]){
         _newsButton.backgroundColor = [UIColor clearColor];
         _spotlightButton.backgroundColor = [UIColor clearColor];
@@ -324,7 +383,7 @@
     }
 }
 
-- (IBAction)columnsAction:(id)sender {
+- (IBAction)columnsAction{
     if(![selectedSection isEqualToString:@"columns"]){
         _newsButton.backgroundColor = [UIColor clearColor];
         _spotlightButton.backgroundColor = [UIColor clearColor];

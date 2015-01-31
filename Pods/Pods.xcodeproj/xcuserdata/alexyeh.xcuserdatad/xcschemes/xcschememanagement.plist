@@ -6,88 +6,83 @@
 	<dict>
 		<key>Pods-Bolts.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-Facebook-iOS-SDK.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-MXLCalendarManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-Parse.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-SDWebImage.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-SVWebViewController.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-ionicons.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>01A0D7D11EA44A3BB938BE3D</key>
+		<key>049536291D0090D1F7FCD4F4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1C370D814A924F4E9BE6298A</key>
+		<key>4F7AC9735FEE41E90DAE8F73</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2B7ECB37A783490CBC9D6681</key>
+		<key>53D32A65B0F628D004103F74</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6FC6E2EDC3DB4FDF9B010CCD</key>
+		<key>9627E1C7757EB5A75F503F5C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>70B72412EA5F4E938DDBB4D0</key>
+		<key>A08E6F36484CB3915C30CF30</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9EE1F9F51E5E4B2BBC844B22</key>
+		<key>B78EE5A0BC87F68E9014499D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A283880382034D61B2077D57</key>
+		<key>C6DAA4B37C0C17996F5BCD07</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D58082D9485A414EB6E97DD1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D66F9A01EEC64599913E1EB0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F661631CFA614237A1504606</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F6F8F86950ED41F59F77155E</key>
+		<key>DFF5E95A566CD95CE8EDDCE6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

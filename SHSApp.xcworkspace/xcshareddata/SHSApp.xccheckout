@@ -10,14 +10,14 @@
 	<string>SHSApp</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>465D475BA6A5BD3BAE7CC0491FBD7C6C9825F99F</key>
+		<key>584080675984331D559D25C443EB2D0D9EB09AFD</key>
 		<string>https://github.com/SHSAppDev/SHSApp-iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>SHSApp.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>465D475BA6A5BD3BAE7CC0491FBD7C6C9825F99F</key>
+		<key>584080675984331D559D25C443EB2D0D9EB09AFD</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>465D475BA6A5BD3BAE7CC0491FBD7C6C9825F99F</string>
+	<string>584080675984331D559D25C443EB2D0D9EB09AFD</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>465D475BA6A5BD3BAE7CC0491FBD7C6C9825F99F</string>
+			<string>584080675984331D559D25C443EB2D0D9EB09AFD</string>
 			<key>IDESourceControlWCCName</key>
 			<string>SHSApp-2</string>
 		</dict>

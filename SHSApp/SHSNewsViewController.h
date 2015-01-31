@@ -22,11 +22,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *featuresButton;
 @property (weak, nonatomic) IBOutlet UIButton *columnsButton;
 
-- (IBAction)spotlightAction:(id)sender;
-- (IBAction)newsAction:(id)sender;
-- (IBAction)sportsAction:(id)sender;
-- (IBAction)opinionAction:(id)sender;
-- (IBAction)featuresAction:(id)sender;
-- (IBAction)columnsAction:(id)sender;
+- (IBAction)spotlightAction;
+- (IBAction)newsAction;
+- (IBAction)sportsAction;
+- (IBAction)opinionAction;
+- (IBAction)featuresAction;
+- (IBAction)columnsAction;
 
 @end

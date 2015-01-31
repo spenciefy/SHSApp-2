@@ -3,4 +3,5 @@ pod 'SDWebImage', '~>3.6'
 pod 'Parse'
 pod 'SVWebViewController', :head
 pod 'MXLCalendarManager'
+pod 'ionicons'
 
