@@ -18,20 +18,21 @@
     self.tableView.separatorInset = UIEdgeInsetsZero;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Calendar"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-                for(int i = 0; i < objects.count; i++){
-                    NSString *title = [objects[i] objectForKey:@"Title"];
-                    NSLog(@"%@", title);
-                    [self.tableView reloadData];
-                }
-            } else {
-                // Log details of the failure
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-            }
-    }];
+    self.tableView.contentInset = UIEdgeInsetsMake(9, 0, 0, 0);
+//    
+//    PFQuery *query = [PFQuery queryWithClassName:@"Calendar"];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//            if (!error) {
+//                for(int i = 0; i < objects.count; i++){
+//                    NSString *title = [objects[i] objectForKey:@"Title"];
+//                    NSLog(@"%@", title);
+//                    [self.tableView reloadData];
+//                }
+//            } else {
+//                // Log details of the failure
+//                NSLog(@"Error: %@ %@", error, [error userInfo]);
+//            }
+//    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -45,7 +46,7 @@
         
         self.pullToRefreshEnabled = NO;
         self.paginationEnabled = NO;
-        self.objectsPerPage = 150;
+        self.objectsPerPage = 1000;
         self.sections = [NSMutableDictionary dictionary];
         self.sectionToMonthMap = [NSMutableDictionary dictionary];
     }
@@ -75,8 +76,38 @@
 }
 
 - (NSString *)monthForSection:(NSInteger)section {
-    NSLog(@"%ld section ", (long)section);
-    return [self.sectionToMonthMap objectForKey:[NSNumber numberWithInt:section]];
+    return [self.sectionToMonthMap objectForKey:[NSNumber numberWithInt:(int)section]];
+}
+
+- (NSString *)monthStringForSection:(NSInteger)section {
+    NSString *month = [self monthForSection:section];
+    if([month isEqualToString:@"1"]) {
+        return @"January";
+    } else if ([month isEqualToString:@"2"]) {
+        return @"February";
+    } else if ([month isEqualToString:@"3"]) {
+        return @"March";
+    } else if ([month isEqualToString:@"4"]) {
+        return @"April";
+    } else if ([month isEqualToString:@"5"]) {
+        return @"May";
+    } else if ([month isEqualToString:@"6"]) {
+        return @"June";
+    } else if ([month isEqualToString:@"7"]) {
+        return @"July";
+    } else if ([month isEqualToString:@"8"]) {
+        return @"August";
+    } else if ([month isEqualToString:@"9"]) {
+        return @"September";
+    } else if ([month isEqualToString:@"10"]) {
+        return @"October";
+    } else if ([month isEqualToString:@"11"]) {
+        return @"November";
+    } else if ([month isEqualToString:@"12"]) {
+        return @"December";
+    }
+    
+    return @"";
 }
 
 - (void)objectsDidLoad:(NSError *)error {
@@ -97,10 +128,10 @@
             objectsInSection = [NSMutableArray array];
             
             // this is the first time we see this company - increment the section index
-            [self.sectionToMonthMap setObject:month forKey:[NSNumber numberWithInt:section++]];
+            [self.sectionToMonthMap setObject:month forKey:[NSNumber numberWithInt:(int)section++]];
         }
         
-        [objectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
+        [objectsInSection addObject:[NSNumber numberWithInt:(int)rowIndex++]];
         [self.sections setObject:objectsInSection forKey:month];
     }
     [self.tableView reloadData];
@@ -137,12 +168,12 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 30)];
-    [view setBackgroundColor:[UIColor lightGrayColor]];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 7, tableView.frame.size.width, 18)];
-    [label setFont:[UIFont fontWithName:@"AvenirNext-Regular" size:16]];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 40)];
+    [view setBackgroundColor:[UIColor colorWithRed:194/255.0 green:0 blue:0 alpha:1]];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 8, tableView.frame.size.width, 18)];
+    [label setFont:[UIFont fontWithName:@"AvenirNext-Medium" size:18]];
     [label setTextColor:[UIColor whiteColor]];
-    NSString *month = [self monthForSection:section];
+    NSString *month = [self monthStringForSection:section];
     [label setText:month];
     [view addSubview:label];
     return view;
@@ -165,34 +196,33 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:eventCellIdentifier];
     }
-        
-    UILabel *titleLabel = (UILabel*) [cell viewWithTag:100];
-    titleLabel.text = [object objectForKey:@"name"];
+    UILabel *titleLabel = (UILabel*) [cell viewWithTag:1];
+    titleLabel.text = [object objectForKey:@"Title"];
     
-    UILabel *detailLabel = (UILabel*) [cell viewWithTag:101];
-    if([object objectForKey:@"Where"]){
-        detailLabel.text = [object objectForKey:@"Where"];
+    UILabel *detailLabel = (UILabel*) [cell viewWithTag:2];
+    if([object objectForKey:@"Description"]){
+        detailLabel.text = [object objectForKey:@"Description"];
     } else {
         detailLabel.text = @"";
     }
 
-    UILabel *dateLabel = (UILabel*)[cell viewWithTag:103];
+    UILabel *dateLabel = (UILabel*)[cell viewWithTag:3];
     NSString *timeString = [object objectForKey:@"Start"];
     NSDateFormatter *stringDateFormatter = [[NSDateFormatter alloc] init];
-    [stringDateFormatter setDateFormat:@"MM-DD-YYYY hh:mm"];
+    [stringDateFormatter setDateFormat:@"MM/dd/yyyy HH:mm"];
     NSDate *dateFromString = [[NSDate alloc] init];
     dateFromString = [stringDateFormatter dateFromString:timeString];
     
     NSDateFormatter *dayFormatter = [[NSDateFormatter alloc] init];
-    [dayFormatter setDateFormat:@"dd"];
+    [dayFormatter setDateFormat:@"d"];
     dateLabel.text = [dayFormatter stringFromDate:dateFromString];
 
-    UILabel *timeLabel = (UILabel*)[cell viewWithTag:104];
+    UILabel *timeLabel = (UILabel*)[cell viewWithTag:4];
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-    [timeFormatter setDateFormat:@"m a"];
-    timeLabel.text = [dayFormatter stringFromDate:dateFromString];
+    [timeFormatter setDateFormat:@"h a"];
+    NSLog(@"%@", [timeFormatter stringFromDate:dateFromString]);
+    timeLabel.text = [timeFormatter stringFromDate:dateFromString];
 
-    
     return cell;
 }
 
