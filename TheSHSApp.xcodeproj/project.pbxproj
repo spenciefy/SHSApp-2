@@ -306,6 +306,9 @@
 			isa = PBXGroup;
 			children = (
 				B2E98A5C19982DE500FA153B /* icon */,
+				B28612071A7C6B2A00812E96 /* 2.jpg */,
+				B28612081A7C6B2A00812E96 /* 3.jpg */,
+				B28612091A7C6B2A00812E96 /* 1.jpg */,
 				6CCE26AA19955BC200FC4A5B /* blank_profile_public@2x.png */,
 				6CCE26AC19955D6900FC4A5B /* Aeries Logo.png */,
 				B2E98A5A1994FA2700FA153B /* Access-256 (1).png */,
@@ -397,9 +400,6 @@
 		6C6E5B33199301FE00B26782 /* SHSApp */ = {
 			isa = PBXGroup;
 			children = (
-				B28612071A7C6B2A00812E96 /* 2.jpg */,
-				B28612081A7C6B2A00812E96 /* 3.jpg */,
-				B28612091A7C6B2A00812E96 /* 1.jpg */,
 				6C6E5B3C199301FE00B26782 /* SHSAppDelegate.h */,
 				6C6E5B3D199301FE00B26782 /* SHSAppDelegate.m */,
 				6C6E5B3F199301FE00B26782 /* Main.storyboard */,

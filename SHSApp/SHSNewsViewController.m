@@ -48,7 +48,7 @@
     numberToReload = 10;
     [self setSelectedSection:@"spotlight"];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed: @"menu.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(toggleMenu)];
+   self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(toggleMenu)];
     
     REMenuItem *Spotlight = [[REMenuItem alloc] initWithTitle:@"Spotlight"
                                                     subtitle:nil

@@ -18,7 +18,6 @@
     self.tableView.separatorInset = UIEdgeInsetsZero;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.contentInset = UIEdgeInsetsMake(9, 0, 0, 0);
 
 }
 
