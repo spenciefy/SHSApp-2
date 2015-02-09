@@ -11,6 +11,6 @@
 #import "EScrollerView.h"
 
 @interface SHSHomeViewController : UIViewController <EScrollerViewDelegate>
-//@property (weak, nonatomic) IBOutlet UIView *calanderContainer;
+@property (weak, nonatomic) IBOutlet UIView *calanderContainer;
 
 @end

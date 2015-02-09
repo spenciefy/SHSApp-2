@@ -25,8 +25,10 @@
     query.limit = 1000;
     NSArray *asd = [query findObjects];
     
+    self.calanderContainer.frame = CGRectMake(self.calanderContainer.frame.origin.x, imageScroller.frame.origin.y + imageScroller.frame.size.height, self.calanderContainer.frame.size.width, self.calanderContainer.frame.size.width);
     
-//    self.calanderContainer.frame = CGRectMake(self.calanderContainer.frame.origin.x, imageScroller.frame.origin.y + imageScroller.frame.size.height, self.calanderContainer.frame.size.width, self.calanderContainer.frame.size.width);
+    NSLog(@"wefwefew %f", imageScroller.frame.size.height);
+    NSLog(@"wefwefew %f", self.calanderContainer.frame.origin.y);
 }
 
 - (void)viewDidLayoutSubviews{
