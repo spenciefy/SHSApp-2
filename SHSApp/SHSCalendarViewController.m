@@ -19,20 +19,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.contentInset = UIEdgeInsetsMake(9, 0, 0, 0);
-//    
-//    PFQuery *query = [PFQuery queryWithClassName:@"Calendar"];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//            if (!error) {
-//                for(int i = 0; i < objects.count; i++){
-//                    NSString *title = [objects[i] objectForKey:@"Title"];
-//                    NSLog(@"%@", title);
-//                    [self.tableView reloadData];
-//                }
-//            } else {
-//                // Log details of the failure
-//                NSLog(@"Error: %@ %@", error, [error userInfo]);
-//            }
-//    }];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -170,8 +157,8 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 40)];
     [view setBackgroundColor:[UIColor colorWithRed:194/255.0 green:0 blue:0 alpha:1]];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 8, tableView.frame.size.width, 18)];
-    [label setFont:[UIFont fontWithName:@"AvenirNext-Medium" size:18]];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 7, tableView.frame.size.width, 18)];
+    [label setFont:[UIFont fontWithName:@"AvenirNext-Medium" size:20]];
     [label setTextColor:[UIColor whiteColor]];
     NSString *month = [self monthStringForSection:section];
     [label setText:month];
@@ -223,6 +210,23 @@
     NSLog(@"%@", [timeFormatter stringFromDate:dateFromString]);
     timeLabel.text = [timeFormatter stringFromDate:dateFromString];
 
+    int day = timeLabel.text.intValue;
+    if(day >= 10) {
+        timeLabel.center = CGPointMake(dateLabel.center.x, timeLabel.center.y);
+    }
+    
+    UILabel *timeSuffixLabel = (UILabel*)[cell viewWithTag:5];
+    NSLog(@"%@", dateLabel.text);
+    if([dateLabel.text isEqualToString:@"1"]) {
+        timeSuffixLabel.text = @"st";
+    } else if ([dateLabel.text isEqualToString:@"2"]) {
+        timeSuffixLabel.text = @"nd";
+    } else if ([dateLabel.text isEqualToString:@"3"]) {
+        timeSuffixLabel.text = @"rd";
+    } else {
+        timeSuffixLabel.text = @"th";
+    }
+    
     return cell;
 }
 
