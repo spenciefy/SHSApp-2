@@ -179,9 +179,6 @@
 
 }
 
-
-
-
 - (id)initWithCoder:(NSCoder *)aCoder
 {
     self = [super initWithCoder:aCoder];
@@ -229,24 +226,44 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object
 {
-        static NSString *simpleTableIdentifier = @"PeriodCell";
-        
-        UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-        }
-        
-        UILabel *periodLabel = (UILabel*) [cell viewWithTag:100];
-        periodLabel.adjustsFontSizeToFitWidth = YES;
-        periodLabel.text = [object objectForKey:@"period"];
-        
-        UILabel *timeLabel = (UILabel*) [cell viewWithTag:101];
-        timerLabel.adjustsFontSizeToFitWidth = YES;
-        timeLabel.text = [object objectForKey:@"time"];
-        
-        return cell;
+    static NSString *simpleTableIdentifier = @"PeriodCell";
+    
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+    }
+    
+    int cellHeight = (self.tableView.frame.size.height - 44 - 64 - 44)/self.objects.count;
+    
+    UILabel *periodLabel = (UILabel*) [cell viewWithTag:100];
+    periodLabel.center = CGPointMake(periodLabel.center.x, cellHeight/2);
+    periodLabel.adjustsFontSizeToFitWidth = YES;
+    periodLabel.text = [object objectForKey:@"period"];
+    
+    UILabel *timeLabel = (UILabel*) [cell viewWithTag:101];
+    timeLabel.center = CGPointMake(timeLabel.center.x, cellHeight/2);
+    timerLabel.adjustsFontSizeToFitWidth = YES;
+    timeLabel.text = [object objectForKey:@"time"];
+    
+    return cell;
 }
 
-
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Remove seperator inset
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    // Prevent the cell from inheriting the Table View's margin settings
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    
+    // Explictly set your cell's layout margins
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
 
 @end

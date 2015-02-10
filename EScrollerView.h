@@ -22,6 +22,7 @@
     id<EScrollerViewDelegate> delegate;
     int currentPageIndex;
     UILabel *noteTitle;
+    UILabel *timeLabel;
 }
 @property(nonatomic,retain)id<EScrollerViewDelegate> delegate;
 -(id)initWithFrameRect:(CGRect)rect imageArray:(NSArray *)imgArr;

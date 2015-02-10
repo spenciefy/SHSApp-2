@@ -21,14 +21,14 @@
     imageScroller.delegate = self;
     [self.view addSubview:imageScroller];
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Calendar"];
-    query.limit = 1000;
-    NSArray *asd = [query findObjects];
-    
     self.calanderContainer.frame = CGRectMake(self.calanderContainer.frame.origin.x, imageScroller.frame.origin.y + imageScroller.frame.size.height, self.calanderContainer.frame.size.width, self.calanderContainer.frame.size.width);
     
-    NSLog(@"wefwefew %f", imageScroller.frame.size.height);
-    NSLog(@"wefwefew %f", self.calanderContainer.frame.origin.y);
+    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    infoButton.tintColor = [UIColor whiteColor];
+    [infoButton addTarget:self action:@selector(infoButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    infoButton.center = CGPointMake(self.view.frame.size.width - 25, 25);
+    [self.view addSubview:infoButton];
+
 }
 
 - (void)viewDidLayoutSubviews{
@@ -45,5 +45,29 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [super viewWillDisappear:animated];
 }
+
+- (void)infoButtonTapped:(id)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"More info"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Call School",@"Email School", @"Open Address in Maps", @"Go to School Website", nil];
+    [actionSheet showInView:self.view];
+
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 0) {
+        //call school
+    } else if(buttonIndex == 1){
+        //email school
+    } else if(buttonIndex == 2) {
+    //open address in maps
+    } else if(buttonIndex == 3) {
+        //go to school website
+    }
+}
+
+
 
 @end

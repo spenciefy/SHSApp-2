@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 #import "EScrollerView.h"
 
-@interface SHSHomeViewController : UIViewController <EScrollerViewDelegate>
+@interface SHSHomeViewController : UIViewController <EScrollerViewDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIView *calanderContainer;
 
 @end

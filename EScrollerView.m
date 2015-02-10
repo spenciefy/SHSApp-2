@@ -57,10 +57,15 @@
         pageControl.currentPage=0;
         pageControl.numberOfPages=(pageCount-2);
         
-        UILabel *schoolLabel = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, rect.size.width, 50)];
-        schoolLabel.text = @" Saratoga High School";
+        UILabel *schoolLabel = [[UILabel alloc] initWithFrame: CGRectMake(5, 0, rect.size.width, 50)];
+        schoolLabel.text = @"Saratoga High School";
         schoolLabel.textColor = [UIColor whiteColor];
         schoolLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size: 25.0];
+        
+        timeLabel = [[UILabel alloc] initWithFrame: CGRectMake(5, 27, rect.size.width, 50)];
+        timeLabel.text = @"";
+        timeLabel.textColor = [UIColor whiteColor];
+        timeLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size: 17.0];
         
         CAGradientLayer *gradientLayer = [CAGradientLayer layer];
         gradientLayer.frame = schoolLabel.layer.bounds;
@@ -74,10 +79,11 @@
                                    nil];
         [self.layer addSublayer:gradientLayer];
         [self addSubview: schoolLabel];
+        [self addSubview: timeLabel];
 
-        
-        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(autoScroll) userInfo:nil repeats:YES];
-        
+        NSTimer *autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(autoScroll) userInfo:nil repeats:YES];
+        NSTimer *timeTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
+
     }
     return self;
 }
@@ -115,7 +121,7 @@
     }
 }
 
-- (void)autoScroll{
+- (void)autoScroll {
     CGFloat pageWidth = scrollView.frame.size.width;
     int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     currentPageIndex=page;
@@ -128,4 +134,10 @@
     
 }
 
+- (void)updateTime {
+    NSDate *nowTime = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEEE, M/dd h:mm a"];
+    timeLabel.text = [dateFormatter stringFromDate:nowTime];
+}
 @end

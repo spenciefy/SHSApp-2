@@ -18,7 +18,6 @@
     self.tableView.separatorInset = UIEdgeInsetsZero;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -166,7 +165,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 82;
+    return 73;
 }
 
 #pragma mark - UITableViewDelegate
@@ -209,24 +208,43 @@
     NSLog(@"%@", [timeFormatter stringFromDate:dateFromString]);
     timeLabel.text = [timeFormatter stringFromDate:dateFromString];
 
-    int day = timeLabel.text.intValue;
+    int day = dateLabel.text.intValue;
     if(day >= 10) {
-        timeLabel.center = CGPointMake(dateLabel.center.x, timeLabel.center.y);
+    //3    timeLabel.center = CGPointMake(dateLabel.center.x, timeLabel.center.y);
     }
     
     UILabel *timeSuffixLabel = (UILabel*)[cell viewWithTag:5];
-    NSLog(@"%@", dateLabel.text);
-    if([dateLabel.text isEqualToString:@"1"]) {
+    NSString *dateLastNumber = [dateLabel.text substringFromIndex: [dateLabel.text length] - 1];
+
+    if([dateLastNumber isEqualToString:@"1"]) {
         timeSuffixLabel.text = @"st";
-    } else if ([dateLabel.text isEqualToString:@"2"]) {
+    } else if ([dateLastNumber isEqualToString:@"2"]) {
         timeSuffixLabel.text = @"nd";
-    } else if ([dateLabel.text isEqualToString:@"3"]) {
+    } else if ([dateLastNumber isEqualToString:@"3"]) {
         timeSuffixLabel.text = @"rd";
     } else {
         timeSuffixLabel.text = @"th";
     }
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Remove seperator inset
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    // Prevent the cell from inheriting the Table View's margin settings
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    
+    // Explictly set your cell's layout margins
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
 }
 
 @end
