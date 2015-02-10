@@ -500,7 +500,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <containerView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" id="y0T-7c-T9H">
-                                <rect key="frame" x="0.0" y="192" width="375" height="424.99999924968267"/>
+                                <rect key="frame" x="0.0" y="191.99999924968267" width="375" height="425"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <connections>
                                     <segue destination="2ye-Zz-2Vb" kind="embed" id="jbq-il-hQl"/>
@@ -597,7 +597,7 @@
             <objects>
                 <tableViewController id="2ye-Zz-2Vb" customClass="SHSCalendarViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="73" sectionHeaderHeight="22" sectionFooterHeight="22" id="ZCR-vM-YMp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="424.99999924968267"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="425"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
