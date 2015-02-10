@@ -37,6 +37,8 @@
      UIRemoteNotificationTypeAlert |
      UIRemoteNotificationTypeSound];
     
+    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:220.0/255.0 green:0 blue:0 alpha:1]];
+
     return YES;
 }
 

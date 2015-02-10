@@ -639,7 +639,7 @@
 				ORGANIZATIONNAME = "Spencer Yen";
 				TargetAttributes = {
 					6C6E5B29199301FE00B26782 = {
-						DevelopmentTeam = R9FZ4DBS7P;
+						DevelopmentTeam = X6U5D7V675;
 					};
 					6C6E5B4D199301FE00B26782 = {
 						TestTargetID = 6C6E5B29199301FE00B26782;

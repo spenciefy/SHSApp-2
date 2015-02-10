@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import <Parse-iOS/Parse.h>
+
 @interface SHSBellScheduleViewController : PFQueryTableViewController <UITableViewDelegate, UITableViewDataSource>
 {
     int segment;

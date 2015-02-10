@@ -66,22 +66,23 @@
         timeLabel.text = @"";
         timeLabel.textColor = [UIColor whiteColor];
         timeLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size: 17.0];
+        timeLabel.alpha = 0.8;
         
         CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-        gradientLayer.frame = schoolLabel.layer.bounds;
+        gradientLayer.frame = CGRectMake(0, 0, rect.size.width, 80);
         gradientLayer.colors = [NSArray arrayWithObjects:
                                 (id)[UIColor colorWithRed: 0.2 green: 0.2 blue: 0.2 alpha:0.8f].CGColor,
                                 (id)[UIColor clearColor].CGColor,
                                 nil];
         gradientLayer.locations = [NSArray arrayWithObjects:
-                                   [NSNumber numberWithFloat:0.0f],
+                                   [NSNumber numberWithFloat:0.6f],
                                    [NSNumber numberWithFloat:1.0f],
                                    nil];
         [self.layer addSublayer:gradientLayer];
         [self addSubview: schoolLabel];
         [self addSubview: timeLabel];
 
-        NSTimer *autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(autoScroll) userInfo:nil repeats:YES];
+        NSTimer *autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(autoScroll) userInfo:nil repeats:YES];
         NSTimer *timeTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
 
     }

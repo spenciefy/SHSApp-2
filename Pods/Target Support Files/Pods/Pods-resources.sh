@@ -31,10 +31,6 @@ install_resource()
       echo "xcrun momc \"${PODS_ROOT}/$1\" \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcdatamodeld`.momd\""
       xcrun momc "${PODS_ROOT}/$1" "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcdatamodeld`.momd"
       ;;
-    *.xcmappingmodel)
-      echo "xcrun mapc \"${PODS_ROOT}/$1\" \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcmappingmodel`.cdm\""
-      xcrun mapc "${PODS_ROOT}/$1" "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcmappingmodel`.cdm"
-      ;;
     *.xcassets)
       ;;
     /*)
@@ -47,8 +43,7 @@ install_resource()
       ;;
   esac
 }
-          install_resource "Facebook-iOS-SDK/src/FBUserSettingsViewResources.bundle"
-                    install_resource "SVWebViewController/SVWebViewController/SVWebViewController.bundle/SVWebViewControllerBack.png"
+          install_resource "SVWebViewController/SVWebViewController/SVWebViewController.bundle/SVWebViewControllerBack.png"
                     install_resource "SVWebViewController/SVWebViewController/SVWebViewController.bundle/SVWebViewControllerBack@2x.png"
                     install_resource "SVWebViewController/SVWebViewController/SVWebViewController.bundle/SVWebViewControllerNext.png"
                     install_resource "SVWebViewController/SVWebViewController/SVWebViewController.bundle/SVWebViewControllerNext@2x.png"

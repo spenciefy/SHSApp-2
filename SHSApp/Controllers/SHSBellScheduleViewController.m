@@ -41,7 +41,7 @@
 {
     [super viewDidAppear:animated];
     [self updateCounter];
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateCounter) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateCounter) userInfo:nil repeats:NO];
 
     NSArray *itemArray = [NSArray arrayWithObjects: @"M", @"T", @"W", @"TH", @"F", nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
@@ -75,7 +75,7 @@
     
 }
 
-- (void) updateCounter {
+- (void)updateCounter {
     endTime = [self getEndTime];
     if(!endTime){
         timerLabel.text = @" School's Out!";
@@ -106,42 +106,43 @@
     if([dayName isEqualToString:@"Saturday"] || [dayName isEqualToString:@"Sunday"]){
         dayName = @"Monday";
     }
-        PFQuery *query = [PFQuery queryWithClassName:dayName];
+    PFQuery *query = [PFQuery queryWithClassName:dayName];
     
-        NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-        [timeFormatter setDateFormat:@"HHmm"];
-        [timeFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
-        [timeFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"PST"]];
-        NSString *nowTime = [timeFormatter stringFromDate:[NSDate date]];
-        NSNumber *nowInteger= [NSNumber numberWithInt:[nowTime intValue]];
-        [query whereKey:@"endTime" greaterThan:nowInteger];
-        [query orderByAscending:@"endTime"];
-        PFObject *dayObject = [[query findObjects] firstObject];
-        [dayObject saveInBackground];
-        NSNumber *endTimeN = [dayObject objectForKey:@"endTime"];
-    
-        if([query findObjects].count == 0) {
-            return nil;
-        }
-    
-        NSString *dateString;
-        if([endTimeN intValue] < 999) {
-            dateString = [NSString stringWithFormat:@"0%@", endTimeN];
-        } else {
-            dateString = [NSString stringWithFormat:@"%@", endTimeN];
-        }
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"M/d/yyyy HHmm"];
-        [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
-        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"PST"]];
-        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
-        NSInteger day = [components day];
-        NSInteger month = [components month];
-        NSInteger year = [components year];
-        NSString *datestr = [NSString stringWithFormat:@"%ld/%ld/%ld %@",(long)month,(long)day,(long)year,dateString];
-        NSDate *dateFromString = [dateFormatter dateFromString:datestr];
-    
-        return dateFromString;
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+    [timeFormatter setDateFormat:@"HHmm"];
+    [timeFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [timeFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"PST"]];
+    NSString *nowTime = [timeFormatter stringFromDate:[NSDate date]];
+    NSNumber *nowInteger= [NSNumber numberWithInt:[nowTime intValue]];
+    [query whereKey:@"endTime" greaterThan:nowInteger];
+    [query orderByAscending:@"endTime"];
+    PFObject *dayObject = [[query findObjects] firstObject];
+    [dayObject saveInBackground];
+
+    NSNumber *endTimeN = [dayObject objectForKey:@"endTime"];
+
+    if([query findObjects].count == 0) {
+        return nil;
+    }
+
+    NSString *dateString;
+    if([endTimeN intValue] < 999) {
+        dateString = [NSString stringWithFormat:@"0%@", endTimeN];
+    } else {
+        dateString = [NSString stringWithFormat:@"%@", endTimeN];
+    }
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"M/d/yyyy HHmm"];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"PST"]];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
+    NSInteger day = [components day];
+    NSInteger month = [components month];
+    NSInteger year = [components year];
+    NSString *datestr = [NSString stringWithFormat:@"%ld/%ld/%ld %@",(long)month,(long)day,(long)year,dateString];
+    NSDate *dateFromString = [dateFormatter dateFromString:datestr];
+
+    return dateFromString;
     }
 
 - (void)didReceiveMemoryWarning

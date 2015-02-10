@@ -41,7 +41,7 @@
 
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:PARSE_CALENDAR_CLASS_NAME];
-    
+    query.limit = 1000;
     // If Pull To Refresh is enabled, query against the network by default.
     if (self.pullToRefreshEnabled) {
         query.cachePolicy = kPFCachePolicyNetworkOnly;
@@ -106,20 +106,28 @@
     NSInteger section = 0;
     NSInteger rowIndex = 0;
     for (PFObject *object in self.objects) {
-        NSLog(@"object: %@", object);
         NSString *month = [object objectForKey:@"Month"];
+
         NSMutableArray *objectsInSection = [self.sections objectForKey:month];
         if (!objectsInSection) {
             objectsInSection = [NSMutableArray array];
-            
-            // this is the first time we see this company - increment the section index
             [self.sectionToMonthMap setObject:month forKey:[NSNumber numberWithInt:(int)section++]];
         }
         
         [objectsInSection addObject:[NSNumber numberWithInt:(int)rowIndex++]];
         [self.sections setObject:objectsInSection forKey:month];
     }
-    [self.tableView reloadData];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        NSDate *date = [NSDate date];
+        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSDateComponents *components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:date];
+        NSInteger month = [components month];
+        [self.tableView scrollToRowAtIndexPath: [NSIndexPath indexPathForRow: 0 inSection:month - 1]
+                              atScrollPosition: UITableViewScrollPositionTop
+                                      animated: TRUE];
+    });
+   
 }
 
 
@@ -165,7 +173,30 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 73;
+    NSString *titleString = [[self.objects objectAtIndex:indexPath.row]objectForKey:@"Title"];
+    if([[self.objects objectAtIndex:indexPath.row] objectForKey:@"Description"]){
+        NSString *bodyString = [[self.objects objectAtIndex:indexPath.row]objectForKey:@"Description"];
+        CGSize constraint = CGSizeMake(self.view.frame.size.width-85, MAXFLOAT);
+        
+        NSDictionary *titleAttributes = [NSDictionary dictionaryWithObject:[UIFont fontWithName:@"AvenirNext-Medium" size:19.0] forKey:NSFontAttributeName];
+        CGRect titleSize = [titleString boundingRectWithSize:constraint options:NSStringDrawingUsesLineFragmentOrigin attributes:titleAttributes context:nil];
+
+        NSDictionary *descriptionAttributes = [NSDictionary dictionaryWithObject:[UIFont fontWithName:@"AvenirNext-Regular" size:17.0] forKey:NSFontAttributeName];
+        CGRect descriptionSize = [bodyString boundingRectWithSize:constraint options:NSStringDrawingUsesLineFragmentOrigin attributes:descriptionAttributes context:nil];
+
+        return titleSize.size.height + descriptionSize.size.height + 25;
+    } else {
+        CGSize constraint = CGSizeMake(self.view.frame.size.width-85, MAXFLOAT);
+        
+        NSDictionary *titleAttributes = [NSDictionary dictionaryWithObject:[UIFont fontWithName:@"AvenirNext-Medium" size:19.0] forKey:NSFontAttributeName];
+        CGRect titleSize = [titleString boundingRectWithSize:constraint options:NSStringDrawingUsesLineFragmentOrigin attributes:titleAttributes context:nil];
+        
+        if(titleSize.size.height > 70) {
+            return titleSize.size.height + 10;
+        } else {
+            return 73;
+        }
+    }
 }
 
 #pragma mark - UITableViewDelegate
@@ -182,13 +213,34 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:eventCellIdentifier];
     }
     UILabel *titleLabel = (UILabel*) [cell viewWithTag:1];
+    UILabel *descriptionLabel = (UILabel*) [cell viewWithTag:2];
+    descriptionLabel.text = [object objectForKey:@"Description"];
+    titleLabel.numberOfLines = 0;
     titleLabel.text = [object objectForKey:@"Title"];
     
-    UILabel *detailLabel = (UILabel*) [cell viewWithTag:2];
     if([object objectForKey:@"Description"]){
-        detailLabel.text = [object objectForKey:@"Description"];
+        NSString *titleString = [object objectForKey:@"Title"];
+        
+        NSString *bodyString = [object objectForKey:@"Description"];
+        CGSize constraint = CGSizeMake(self.view.frame.size.width-85, MAXFLOAT);
+        
+        NSDictionary *titleAttributes = [NSDictionary dictionaryWithObject:[UIFont fontWithName:@"AvenirNext-Medium" size:19.0] forKey:NSFontAttributeName];
+        CGRect titleSize = [titleString boundingRectWithSize:constraint options:NSStringDrawingUsesLineFragmentOrigin attributes:titleAttributes context:nil];
+        
+        NSDictionary *descriptionAttributes = [NSDictionary dictionaryWithObject:[UIFont fontWithName:@"AvenirNext-Regular" size:17.0] forKey:NSFontAttributeName];
+        CGRect descriptionSize = [bodyString boundingRectWithSize:constraint options:NSStringDrawingUsesLineFragmentOrigin attributes:descriptionAttributes context:nil];
+
+        titleLabel.frame = CGRectMake(titleLabel.frame.origin.x, 7, self.view.frame.size.width-85, titleSize.size.height);
+        descriptionLabel.frame = CGRectMake(descriptionLabel.frame.origin.x, titleLabel.frame.origin.y + titleLabel.frame.size.height + 4, self.view.frame.size.width-85, descriptionSize.size.height);
     } else {
-        detailLabel.text = @"";
+        descriptionLabel.text = @"";
+        NSString *titleString = [object objectForKey:@"Title"];
+        CGSize constraint = CGSizeMake(self.view.frame.size.width-85, MAXFLOAT);
+    
+        NSDictionary *titleAttributes = [NSDictionary dictionaryWithObject:[UIFont fontWithName:@"AvenirNext-Medium" size:19.0] forKey:NSFontAttributeName];
+        CGRect titleSize = [titleString boundingRectWithSize:constraint options:NSStringDrawingUsesLineFragmentOrigin attributes:titleAttributes context:nil];
+        
+        titleLabel.frame = CGRectMake(titleLabel.frame.origin.x, 7, self.view.frame.size.width-85, titleSize.size.height);
     }
 
     UILabel *dateLabel = (UILabel*)[cell viewWithTag:3];
@@ -205,7 +257,6 @@
     UILabel *timeLabel = (UILabel*)[cell viewWithTag:4];
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
     [timeFormatter setDateFormat:@"h a"];
-    NSLog(@"%@", [timeFormatter stringFromDate:dateFromString]);
     timeLabel.text = [timeFormatter stringFromDate:dateFromString];
 
     int day = dateLabel.text.intValue;
