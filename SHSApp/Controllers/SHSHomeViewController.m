@@ -84,7 +84,7 @@
         [self presentViewController:mc animated:YES completion:NULL];
         
     } else if(buttonIndex == 2) {
-    //open address in maps
+    // Open address in maps
         // Check for iOS 6
         Class mapItemClass = [MKMapItem class];
         if (mapItemClass && [mapItemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)])
@@ -100,7 +100,7 @@
             [mapItem openInMapsWithLaunchOptions:nil];
         }
     } else if(buttonIndex == 3) {
-        //go to school website
+        //Go to school website
         SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:@"http://www.saratogahigh.org/"];
         [self.navigationController pushViewController:webViewController animated:YES];
   
