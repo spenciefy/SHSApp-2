@@ -16,16 +16,8 @@
     NSString *dayName;
     NSDate *endTime;
 }
-@synthesize tableView, timerLabel;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize tableView, timerLabel;
 
 // Setup UI and variables
 - (void)viewDidLoad
@@ -250,7 +242,7 @@
     return cell;
 }
 
-// 
+// iOS 8 specific code to remove tableview separator inset
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Remove seperator inset
