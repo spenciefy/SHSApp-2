@@ -27,9 +27,7 @@
     return self;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-}
-
+// Setup UI and variables
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -37,6 +35,7 @@
     timerLabel.adjustsFontSizeToFitWidth = YES;
 }
 
+// Setup UI
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -72,9 +71,9 @@
     [self.tableView reloadData];
     
     [self loadObjects];
-    
 }
 
+// Update timer
 - (void)updateCounter {
     endTime = [self getEndTime];
     if(!endTime){
@@ -87,7 +86,7 @@
     }
 }
 
-
+// Query parse to get current day and end time for current period at school, return Date with closest period end time
 -(NSDate *) getEndTime {
     if (segment == 0) {
         self.parseClassName = @"Monday";
@@ -131,6 +130,7 @@
     } else {
         dateString = [NSString stringWithFormat:@"%@", endTimeN];
     }
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"M/d/yyyy HHmm"];
     [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
@@ -143,13 +143,9 @@
     NSDate *dateFromString = [dateFormatter dateFromString:datestr];
 
     return dateFromString;
-    }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
+
+// Change the view based on the day of the week
 -(void)changeView: (id)sender{
     UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
     NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
@@ -177,14 +173,14 @@
     }
     
     segment = (int)selectedSegment;
-
 }
 
+// Setup Parse information
 - (id)initWithCoder:(NSCoder *)aCoder
 {
     self = [super initWithCoder:aCoder];
     if (self) {
-        // The className to query on
+        // The Parse className to query on
         self.parseClassName = dayName;
         self.pullToRefreshEnabled = YES;
         self.paginationEnabled = NO;
@@ -193,6 +189,7 @@
     return self;
 }
 
+// Setups query to load tableview
 - (PFQuery *)queryForTable
 {
     if(self.parseClassName){
@@ -206,12 +203,14 @@
     return nil;
 }
 
-
+// Checks if objects load correctly and update tableview
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
     [self.tableView reloadData];
 }
 
+#pragma mark TableView datasource 
+// Set number of rows tp display in tableview
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (self.objects.count > 0) {
@@ -220,11 +219,13 @@
     return 0;
 }
 
+// Set height for cell
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return (self.tableView.frame.size.height - 44 - 64 - 44)/self.objects.count;
 }
 
+// Populate cell based on Parse database
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object
 {
     static NSString *simpleTableIdentifier = @"PeriodCell";
@@ -249,6 +250,7 @@
     return cell;
 }
 
+// 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Remove seperator inset

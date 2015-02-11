@@ -33,26 +33,38 @@
     [Parse setApplicationId:@"mBeDrmdeuRATh3rO7CqbTZMYKcXkuSrCKPEkPFDG"
                   clientKey:@"VoIiZFddiKtfH9i7iz5jyQMsT9H45KgnDUOtEDo2"];
     
-    [application registerForRemoteNotificationTypes:
-     UIRemoteNotificationTypeBadge |
-     UIRemoteNotificationTypeAlert |
-     UIRemoteNotificationTypeSound];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        [application registerUserNotificationSettings:
+         [UIUserNotificationSettings settingsForTypes:
+          (UIUserNotificationTypeSound |
+           UIUserNotificationTypeAlert |
+           UIUserNotificationTypeBadge) categories:nil]];
+        
+        [application registerForRemoteNotifications];
+    } else {
+        [application registerForRemoteNotificationTypes:
+         (UIUserNotificationTypeBadge |
+          UIUserNotificationTypeSound |
+          UIUserNotificationTypeAlert)];
+    }
 
     return YES;
 }
 
 - (void)application:(UIApplication *)application
-didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
-    
-    // Store the deviceToken in the current installation and save it to Parse for push notifications
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Store the deviceToken in the current Installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    [currentInstallation setDeviceTokenFromData:newDeviceToken];
-    currentInstallation.channels = @[@"global"];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
     [currentInstallation saveInBackground];
 }
 
-- (void)application:(UIApplication *)application
-didReceiveRemoteNotification:(NSDictionary *)userInfo {
+// New in iOS 8
+-(void) application:(UIApplication*) application didRegisterUserNotificationSettings: (UIUserNotificationSettings*) notificationSettings {
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];
 }
 
