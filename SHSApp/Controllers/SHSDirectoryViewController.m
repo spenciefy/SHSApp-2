@@ -9,6 +9,7 @@
 #import "SHSDirectoryViewController.h"
 #import "SHSStaffDetailViewController.h"
 #import "SHSStaffTableViewCell.h"
+
 @interface SHSDirectoryViewController ()
 
 @end
@@ -26,6 +27,7 @@
     return self;
 }
 
+// Setup view UI and initialize
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -41,29 +43,18 @@
     self.searchController.searchResultsDelegate = self;
     self.searchController.delegate = self;
     
-    
-    self.searchResults = [NSMutableArray array];}
+    self.searchResults = [NSMutableArray array];
+}
 
-
+// Load directory objects when view loads
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
     [self loadObjects];
-    
-}
--(void)viewDidAppear:(BOOL)animated{
-    
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    
-}
-
--(void)filterResults:(NSString *)searchTerm {
-    
+// Setup search filtering results
+- (void)filterResults:(NSString *)searchTerm {
     PFQuery *query = [PFQuery queryWithClassName:@"Staff"];
     [query whereKey:@"Name" containsString:searchTerm];
     query.limit = 20;
@@ -71,12 +62,13 @@
     [query findObjectsInBackgroundWithTarget:self selector:@selector(callbackWithResult:error:)];
 }
 
+// Update search table view when searching
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
     [self filterResults:searchString];
     return YES;
 }
 
-
+// When search results are retrieved, reload table view
 - (void)callbackWithResult:(NSArray *)teachers error:(NSError *)error
 {
     if(!error) {
@@ -86,11 +78,11 @@
     }
 }
 
+// The className to query on Parse
 - (id)initWithCoder:(NSCoder *)aCoder
 {
     self = [super initWithCoder:aCoder];
     if (self) {
-        // The className to query on
         self.parseClassName = @"Staff";
         self.pullToRefreshEnabled = NO;
         self.paginationEnabled = NO;
@@ -98,6 +90,7 @@
     return self;
 }
 
+// Setup query to load the tableview
 - (PFQuery *)queryForTable
 {
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
@@ -109,82 +102,72 @@
     return query;
 }
 
+// Method called to reload tableview after objects loaded
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
-    
     [self.tableView reloadData];
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
+#pragma mark TableView Datasource
+
+// Calculate total number of rows based on objects in Parse database
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.tableView) {
-        //if (tableView == self.searchDisplayController.searchResultsTableView) {
-        
         return self.objects.count;
-        
     } else {
-        
         return self.searchResults.count;
-        
     }
-    
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 48;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object
-{
+// Populate tableview cells with Parse database objects
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     NSString *uniqueIdentifier = @"StaffCell";
     SHSStaffTableViewCell *cell = nil;
     
     cell = (SHSStaffTableViewCell *) [self.tableView dequeueReusableCellWithIdentifier:uniqueIdentifier];
     
     if (cell == nil) {
-        
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SHSStaffTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
-        
     }
     
     if (tableView != self.searchDisplayController.searchResultsTableView) {
         cell.nameLabel.text = [object objectForKey:@"Name"];
         cell.typeLabel.text = [object objectForKey:@"Type"];
-        
     }
+    
     if ([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
-        
         PFObject *obj2 = [self.searchResults objectAtIndex:indexPath.row];
         cell.nameLabel.text = [obj2 objectForKey:@"Name"];
         cell.typeLabel.text = [obj2 objectForKey:@"Type"];
-        
     }
+    
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+// Push new view controller when table cell tapped
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView != self.searchDisplayController.searchResultsTableView) {
         selectedStaff = [self.objects objectAtIndex:indexPath.row];
         [self performSegueWithIdentifier:@"PushStaffDetail" sender:self];
     }
     if ([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
-        
         selectedStaff = [self.searchResults objectAtIndex:indexPath.row];
         [self performSegueWithIdentifier:@"PushStaffDetail" sender:self];
-        
-        
     }
 }
 
 #pragma mark - Navigation
 
+// Load staff detail view variables when about to load view
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     SHSStaffDetailViewController *detail = [segue destinationViewController];
     detail.staffInfo = selectedStaff;
-    
 }
 
 @end
