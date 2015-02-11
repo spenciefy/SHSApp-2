@@ -30,6 +30,7 @@
     return self;
 }
 
+// Setup UI
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -50,6 +51,7 @@
     // Do any additional setup after loading the view.
 }
 
+// Display student id picture in full screen
 - (IBAction) fullscreen: (id)sender {
     IDMPhoto *photo = [IDMPhoto photoWithImage:idImage];
     IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos: @[photo]];
@@ -57,6 +59,7 @@
     [self presentViewController: browser animated:NO completion:nil];
 }
 
+// Bring up camera app to take picture
 - (IBAction)useCamera:(id)sender
 {
     if ([UIImagePickerController isSourceTypeAvailable:
@@ -79,9 +82,9 @@
     }
 }
 
-#pragma mark -
 #pragma mark UIImagePickerControllerDelegate
 
+// Get the picture selected from the camera roll
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     NSString *mediaType = info[UIImagePickerControllerMediaType];
@@ -96,45 +99,13 @@
                                                              scale: 1.0
                                                        orientation: UIImageOrientationRight];
         [idButton setImage:idImage forState:UIControlStateNormal];
-        
-        //        if (_newMedia)
-        //            UIImageWriteToSavedPhotosAlbum(image,
-        //                                           self,
-        //                                           @selector(image:finishedSavingWithError:contextInfo:),
-        //                                           nil);
     }
 }
 
-
-
--(void)image:(UIImage *)image finishedSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
-{
-    if (error) {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle: @"Save failed"
-                              message: @"Failed to save image"
-                              delegate: nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
-    }
-}
-
+// Dismiss camera view
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)photoBrowser:(IDMPhotoBrowser *)photoBrowser didDismissAtPageIndex:(NSUInteger)pageIndex
-{
-    id <IDMPhoto> photo = [photoBrowser photoAtIndex:pageIndex];
-    NSLog(@"Did dismiss photoBrowser with photo index: %d, photo caption: %@", pageIndex, photo.caption);
-}
-
-- (void)photoBrowser:(IDMPhotoBrowser *)photoBrowser didDismissActionSheetWithButtonIndex:(NSUInteger)buttonIndex photoIndex:(NSUInteger)photoIndex
-{
-    id <IDMPhoto> photo = [photoBrowser photoAtIndex:photoIndex];
-    NSLog(@"Did dismiss actionSheet with photo index: %d, photo caption: %@", photoIndex, photo.caption);
 }
 
 - (void)didReceiveMemoryWarning
@@ -143,26 +114,20 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+// Open up web browser to Aeries website
 - (IBAction)aeriesButton:(id)sender {
     SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:@"https://aeries.lgsuhsd.org/aeries.net/Loginparent.aspx"];
     [self.navigationController pushViewController:webViewController animated:YES];
 }
+
+// Open up web browser to Naviance website
 - (IBAction)navianceAction:(id)sender {
     SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:@"https://connection.naviance.com/family-connection/auth/login/?hsid=saratogahigh"];
 
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
+// Open up web browser to Canvas website
 - (IBAction)canvasAction:(id)sender {
     SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:@"https://lgsuhsd.instructure.com/login"];
     [self.navigationController pushViewController:webViewController animated:YES];

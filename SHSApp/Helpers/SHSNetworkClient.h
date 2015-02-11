@@ -14,6 +14,7 @@
 + (SHSNetworkClient*)sharedInstance;
 
 - (void)getNidsForSection:(NSString *)section withCount:(NSString *)count completionBlock:(void (^)(NSArray *nids, NSError *error))completionBlock;
+
 - (void)getArticleForNid:(NSString *)nid completionBlock:(void (^)(Article *article, NSError *error))completionBlock;
 
 @end
