@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
+
 - (IBAction)emailAction:(id)sender;
 - (IBAction)callAction:(id)sender;
 - (IBAction)websiteAction:(id)sender;

@@ -39,6 +39,7 @@
     return self;
 }
 
+// Part of PFQueryTableViewController required implementation, give it a Parse query to pull data from
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:PARSE_CALENDAR_CLASS_NAME];
     query.limit = 1000;
@@ -53,17 +54,19 @@
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
     
-    // Order by company
+    // Order by month
     [query orderByAscending:@"Start"];
     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     
     return query;
 }
 
+// Returns section a specific month is in for tableview section purposes
 - (NSString *)monthForSection:(NSInteger)section {
     return [self.sectionToMonthMap objectForKey:[NSNumber numberWithInt:(int)section]];
 }
 
+// Returns month string given month number
 - (NSString *)monthStringForSection:(NSInteger)section {
     NSString *month = [self monthForSection:section];
     if([month isEqualToString:@"1"]) {
@@ -95,10 +98,9 @@
     return @"";
 }
 
+// This method is called every time objects are loaded from Parse via the PFQuery
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
-    
-    // This method is called every time objects are loaded from Parse via the PFQuery
     
     [self.sections removeAllObjects];
     [self.sectionToMonthMap removeAllObjects];
@@ -118,6 +120,7 @@
         [self.sections setObject:objectsInSection forKey:month];
     }
     
+    // A bit hacky, but auto-scroll to current month 0.2 seconds after objects are loaded
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         NSDate *date = [NSDate date];
         NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
@@ -127,10 +130,9 @@
                               atScrollPosition: UITableViewScrollPositionTop
                                       animated: TRUE];
     });
-   
 }
 
-
+// Returns a PFObject given a indexPath for cell
 - (PFObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
     NSString *company = [self monthForSection:indexPath.section];
     
@@ -160,7 +162,8 @@
     return 30.0;
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+// Create view for section headers (month)
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 40)];
     [view setBackgroundColor:[UIColor colorWithRed:194/255.0 green:0 blue:0 alpha:1]];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 7, tableView.frame.size.width, 18)];
@@ -172,6 +175,7 @@
     return view;
 }
 
+// Resize tableview cell height based on text size
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *titleString = [[self.objects objectAtIndex:indexPath.row]objectForKey:@"Title"];
     if([[self.objects objectAtIndex:indexPath.row] objectForKey:@"Description"]){
@@ -201,10 +205,7 @@
 
 #pragma mark - UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
+// Populates each cell with all info retrieved from Parse using PFObjects
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     static NSString *eventCellIdentifier = @"CalendarCell";
     
@@ -258,11 +259,6 @@
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
     [timeFormatter setDateFormat:@"h a"];
     timeLabel.text = [timeFormatter stringFromDate:dateFromString];
-
-    int day = dateLabel.text.intValue;
-    if(day >= 10) {
-    //3    timeLabel.center = CGPointMake(dateLabel.center.x, timeLabel.center.y);
-    }
     
     UILabel *timeSuffixLabel = (UILabel*)[cell viewWithTag:5];
     NSString *dateLastNumber = [dateLabel.text substringFromIndex: [dateLabel.text length] - 1];
@@ -280,6 +276,7 @@
     return cell;
 }
 
+// iOS 8 specific code to remove tableview separator inset
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Remove seperator inset

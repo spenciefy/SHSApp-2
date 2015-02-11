@@ -11,16 +11,11 @@
 @implementation SHSStaffTableViewCell
 @synthesize nameLabel = _nameLabel;
 @synthesize typeLabel = _typeLabel;
-- (void)awakeFromNib
-{
-    // Initialization code
-}
 
+//Setup custom table view cell with name and type
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
 }
 
 @end
