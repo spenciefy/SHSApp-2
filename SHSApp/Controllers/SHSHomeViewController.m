@@ -15,7 +15,11 @@
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
     
-    NSArray *images = @[@"1.jpg", @"2.jpg", @"3.jpg"];
+    NSArray *images = @[];
+    for (int x = 1; x <= 14; x++) {
+        NSString *imgName = [NSString stringWithFormat:@"%i.jpg", x];
+        images = [images arrayByAddingObject:imgName];
+    }
     
     EScrollerView *imageScroller = [[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3) imageArray: images];
     imageScroller.delegate = self;
@@ -28,7 +32,6 @@
     [infoButton addTarget:self action:@selector(infoButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     infoButton.center = CGPointMake(self.view.frame.size.width - 25, 25);
     [self.view addSubview:infoButton];
-
 }
 
 - (void)viewDidLayoutSubviews{
@@ -39,7 +42,6 @@
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
-
 
 - (void)viewWillDisappear:(BOOL)animated{
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
