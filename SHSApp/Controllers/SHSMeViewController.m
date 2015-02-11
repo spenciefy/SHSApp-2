@@ -11,24 +11,16 @@
 #import "IDMPhoto.h"
 #import "IDMPhotoBrowser.h"
 #import <MobileCoreServices/UTCoreTypes.h>
+
 @interface SHSMeViewController ()
 
 @end
 
 @implementation SHSMeViewController {
     UIImage *idImage;
-
 }
+
 @synthesize idButton;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 // Setup UI
 - (void)viewDidLoad
@@ -48,7 +40,6 @@
         idButton.titleLabel.textAlignment = NSTextAlignmentCenter;
            [idButton setTitle:@"Take a picture of your ID\nto use it from the app!" forState:UIControlStateNormal];
     }
-    // Do any additional setup after loading the view.
 }
 
 // Display student id picture in full screen
@@ -106,12 +97,6 @@
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 // Open up web browser to Aeries website
