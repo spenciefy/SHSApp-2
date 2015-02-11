@@ -267,7 +267,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <containerView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" id="y0T-7c-T9H">
-                                <rect key="frame" x="0.0" y="160.99999852683436" width="320" height="357"/>
+                                <rect key="frame" x="0.0" y="160.99999885212432" width="320" height="357"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <connections>
                                     <segue destination="2ye-Zz-2Vb" kind="embed" id="jbq-il-hQl"/>
@@ -303,7 +303,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ktc-cv-5dY">
-                                            <rect key="frame" x="239" y="47" width="74" height="24"/>
+                                            <rect key="frame" x="238.99999982098467" y="47" width="74" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
                                             <color key="textColor" red="0.75294117650000003" green="0.094117647060000004" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
@@ -358,15 +358,15 @@
             <objects>
                 <viewController id="gLE-GN-dY8" customClass="SHSMeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lSP-22-hMN">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="uhH-Bj-qTf">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rbr-fq-DiU">
-                                        <rect key="frame" x="37" y="304" width="246" height="55"/>
+                                        <rect key="frame" x="43" y="304" width="288" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.86666673419999996" green="0.20392158630000001" blue="0.25490197539999998" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="20"/>
@@ -379,7 +379,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZJk-bY-zNa">
-                                        <rect key="frame" x="37" y="382" width="246" height="55"/>
+                                        <rect key="frame" x="43" y="382" width="288" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.86666673419999996" green="0.20392158630000001" blue="0.25490197539999998" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="20"/>
@@ -391,7 +391,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bcJ-eY-4Kk">
-                                        <rect key="frame" x="37" y="20" width="246" height="170"/>
+                                        <rect key="frame" x="43" y="20" width="288" height="170"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
@@ -404,7 +404,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="saZ-9Q-R4t">
-                                        <rect key="frame" x="37" y="224" width="246" height="55"/>
+                                        <rect key="frame" x="43" y="224" width="288" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.86666673419999996" green="0.20392158630000001" blue="0.25490197539999998" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="20"/>
@@ -415,9 +415,16 @@
                                             <action selector="aeriesButton:" destination="gLE-GN-dY8" eventType="touchUpInside" id="4F1-mE-d9Q"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All images used in the app are copyrighted by Saratoga High School Yearbook and have been approved for use" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GbX-74-q1g">
+                                        <rect key="frame" x="54" y="500" width="267" height="53"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="10"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RBy-Nh-VcV">
-                                        <rect key="frame" x="243" y="150" width="35" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <rect key="frame" x="289" y="150" width="35" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="btnCamera.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -432,7 +439,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Me" id="9g3-jc-F6E"/>
                     <navigationItem key="navigationItem" title="Me" id="tUK-OF-yh7"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="idButton" destination="bcJ-eY-4Kk" id="NMe-hR-j37"/>
                         <outlet property="scroll" destination="uhH-Bj-qTf" id="cV8-Uf-pjd"/>
@@ -440,7 +447,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hH9-JJ-cgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1814" y="1137"/>
+            <point key="canvasLocation" x="1813.5" y="1136.5"/>
         </scene>
     </scenes>
     <resources>
