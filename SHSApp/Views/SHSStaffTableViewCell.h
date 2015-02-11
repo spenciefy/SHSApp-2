@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface SHSStaffTableViewCell : UITableViewCell
+
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *typeLabel;
+
 @end

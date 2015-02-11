@@ -35,7 +35,6 @@
         self.sections = [NSMutableDictionary dictionary];
         self.sectionToMonthMap = [NSMutableDictionary dictionary];
     }
-    
     return self;
 }
 

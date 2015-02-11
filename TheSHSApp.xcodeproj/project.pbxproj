@@ -43,7 +43,6 @@
 		6C0F62361A89DEE8002D68AC /* SHSStaffTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C0F62341A89DEE8002D68AC /* SHSStaffTableViewCell.xib */; };
 		6C0F62391A89DF01002D68AC /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0F62381A89DF01002D68AC /* Article.m */; };
 		6C0F623C1A89DF20002D68AC /* SHSMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0F623B1A89DF20002D68AC /* SHSMeViewController.m */; };
-		6C0F623F1A89DFBC002D68AC /* iphone4launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C0F623D1A89DFBC002D68AC /* iphone4launch.png */; };
 		6C0F62401A89DFBC002D68AC /* iphone5Launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C0F623E1A89DFBC002D68AC /* iphone5Launch.png */; };
 		6C0F624D1A8AC684002D68AC /* CoreTextUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0F62421A8AC684002D68AC /* CoreTextUtils.m */; };
 		6C0F624E1A8AC684002D68AC /* NSAttributedString+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0F62441A8AC684002D68AC /* NSAttributedString+Attributes.m */; };
@@ -77,10 +76,8 @@
 		6C6E5B50199301FE00B26782 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C6E5B4F199301FE00B26782 /* XCTest.framework */; };
 		6C6E5B51199301FE00B26782 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C6E5B2D199301FE00B26782 /* Foundation.framework */; };
 		6C6E5B52199301FE00B26782 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C6E5B31199301FE00B26782 /* UIKit.framework */; };
-		6C7324E319989DF8003B37A6 /* TheSHSApp-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C7324E119989DF8003B37A6 /* TheSHSApp-Info.plist */; };
 		6C73D16D1997EDD7004B4BEC /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C73D16C1997EDD7004B4BEC /* CoreText.framework */; };
 		6CAD66F1199841EA00E397EE /* iphone4launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAD66EF199841EA00E397EE /* iphone4launch.png */; };
-		6CAD66F2199841EA00E397EE /* iphone5Launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAD66F0199841EA00E397EE /* iphone5Launch.png */; };
 		B2E98A9519982DE500FA153B /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = B2E98A7519982DE500FA153B /* Icon-40.png */; };
 		B2E98A9619982DE500FA153B /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2E98A7619982DE500FA153B /* Icon-40@2x.png */; };
 		B2E98A9719982DE500FA153B /* Icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = B2E98A7719982DE500FA153B /* Icon-60.png */; };
@@ -603,7 +600,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = SHS;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Spencer Yen";
 				TargetAttributes = {
 					6C6E5B29199301FE00B26782 = {
@@ -655,7 +652,6 @@
 				6C0F620F1A89DE32002D68AC /* btnCamera@2x.png in Resources */,
 				6C6E5B49199301FE00B26782 /* Images.xcassets in Resources */,
 				B2E98A9D19982DE500FA153B /* Icon-Small-50.png in Resources */,
-				6C7324E319989DF8003B37A6 /* TheSHSApp-Info.plist in Resources */,
 				B2E98A9C19982DE500FA153B /* Icon-76@2x.png in Resources */,
 				B2E98A9B19982DE500FA153B /* Icon-76.png in Resources */,
 				B2E98A9F19982DE500FA153B /* Icon-Small.png in Resources */,
@@ -670,12 +666,10 @@
 				6C0F61F61A89DE1C002D68AC /* IDMPBLocalizations.bundle in Resources */,
 				B2E98A9A19982DE500FA153B /* Icon-72@2x.png in Resources */,
 				6C0F62401A89DFBC002D68AC /* iphone5Launch.png in Resources */,
-				6CAD66F2199841EA00E397EE /* iphone5Launch.png in Resources */,
 				6C0F62111A89DE32002D68AC /* directoryTab@2x.png in Resources */,
 				6C0F61CA1A89D90C002D68AC /* Main.storyboard in Resources */,
 				6C0F62361A89DEE8002D68AC /* SHSStaffTableViewCell.xib in Resources */,
 				6C0F62151A89DE32002D68AC /* Naviancelogo.png in Resources */,
-				6C0F623F1A89DFBC002D68AC /* iphone4launch.png in Resources */,
 				6C0F62131A89DE32002D68AC /* idCard.png in Resources */,
 				B2E98AA319982DE500FA153B /* iTunesArtwork.png in Resources */,
 			);

@@ -12,12 +12,6 @@
 #define COCOAPODS_VERSION_MINOR_Bolts 1
 #define COCOAPODS_VERSION_PATCH_Bolts 3
 
-// MXLCalendarManager
-#define COCOAPODS_POD_AVAILABLE_MXLCalendarManager
-#define COCOAPODS_VERSION_MAJOR_MXLCalendarManager 0
-#define COCOAPODS_VERSION_MINOR_MXLCalendarManager 0
-#define COCOAPODS_VERSION_PATCH_MXLCalendarManager 2
-
 // Parse-iOS
 #define COCOAPODS_POD_AVAILABLE_Parse_iOS
 #define COCOAPODS_VERSION_MAJOR_Parse_iOS 1
@@ -41,10 +35,4 @@
 #define COCOAPODS_VERSION_MAJOR_SVWebViewController 1
 #define COCOAPODS_VERSION_MINOR_SVWebViewController 0
 #define COCOAPODS_VERSION_PATCH_SVWebViewController 0
-
-// ionicons
-#define COCOAPODS_POD_AVAILABLE_ionicons
-#define COCOAPODS_VERSION_MAJOR_ionicons 2
-#define COCOAPODS_VERSION_MINOR_ionicons 0
-#define COCOAPODS_VERSION_PATCH_ionicons 1
 
