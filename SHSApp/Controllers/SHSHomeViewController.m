@@ -91,7 +91,7 @@
         {
             // Create an MKMapItem to pass to the Maps app
             CLLocationCoordinate2D coordinate =
-            CLLocationCoordinate2DMake(16.775, -3.009);
+            CLLocationCoordinate2DMake(37.266825, -122.029253);
             MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate
                                                            addressDictionary:nil];
             MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
@@ -106,5 +106,29 @@
   
     }
 }
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 
 @end
