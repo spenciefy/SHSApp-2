@@ -4,30 +4,75 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods (Aakash Thumaty's conflicted copy 2015-01-30).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>Pods-Bolts (Aakash Thumaty's conflicted copy 2015-01-30).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 		<key>Pods-Bolts.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
+		</dict>
+		<key>Pods-Facebook-iOS-SDK (Aakash Thumaty's conflicted copy 2015-01-30).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>Pods-Facebook-iOS-SDK.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
+		<key>Pods-MXLCalendarManager.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
+		<key>Pods-Parse (Aakash Thumaty's conflicted copy 2015-01-30).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
+		<key>Pods-Parse-iOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
 		<key>Pods-Parse.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>4</integer>
+		</dict>
+		<key>Pods-SDWebImage (Aakash Thumaty's conflicted copy 2015-01-30).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
 		</dict>
 		<key>Pods-SDWebImage.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>Pods-SVWebViewController (Aakash Thumaty's conflicted copy 2015-01-30).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
 		<key>Pods-SVWebViewController.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>6</integer>
+		</dict>
+		<key>Pods-ionicons.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
@@ -37,6 +82,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>005206BC5ABD89FEBE05F6C0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>01A0D7D11EA44A3BB938BE3D</key>
 		<dict>
 			<key>primary</key>
@@ -47,7 +97,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4EA5A54D0F69B3BF897FA970</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>579E759D96AF997CF5EE10CB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8658996B3CF8A29872BFDA29</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9487E2F02B864ADEFFD98A29</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9EE1F9F51E5E4B2BBC844B22</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C28828AC8F56C6DE62C95CBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -63,6 +138,11 @@
 			<true/>
 		</dict>
 		<key>F661631CFA614237A1504606</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FD4A1A7C8CAC4E84D0255FFE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
