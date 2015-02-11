@@ -322,7 +322,8 @@
 				6C0F627F1A8AC6DE002D68AC /* REMenuItemView.h */,
 				6C0F62801A8AC6DE002D68AC /* REMenuItemView.m */,
 			);
-			path = REMenu;
+			name = REMenu;
+			path = SHSApp/REMenu;
 			sourceTree = "<group>";
 		};
 		6C14ADD3199453FF0070405D /* Bell Tab */ = {
@@ -400,6 +401,8 @@
 		6C6E5B2C199301FE00B26782 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6C0F62761A8AC6DE002D68AC /* REMenu */,
+				B244A8E71994DF4D002E7B53 /* IDMPhotoBrowser */,
 				6C0F62531A8AC693002D68AC /* EScrollerView.h */,
 				6C0F62541A8AC693002D68AC /* EScrollerView.m */,
 				6C0F62551A8AC693002D68AC /* SVProgressHUD.h */,
@@ -463,7 +466,6 @@
 			children = (
 				6C0F623A1A89DF20002D68AC /* SHSMeViewController.h */,
 				6C0F623B1A89DF20002D68AC /* SHSMeViewController.m */,
-				B244A8E71994DF4D002E7B53 /* IDMPhotoBrowser */,
 			);
 			name = "Me Tab";
 			sourceTree = "<group>";
@@ -483,7 +485,6 @@
 		6CCE26AF1995992800FC4A5B /* News Tab */ = {
 			isa = PBXGroup;
 			children = (
-				6C0F62761A8AC6DE002D68AC /* REMenu */,
 				6C0F62171A89DE9E002D68AC /* SHSHTTPRequestSerializer.h */,
 				6C0F62181A89DE9E002D68AC /* SHSHTTPRequestSerializer.m */,
 				6C0F62191A89DE9E002D68AC /* SHSNetworkClient.h */,
@@ -519,6 +520,7 @@
 				6C0F61F41A89DE1C002D68AC /* IDMZoomingScrollView.m */,
 			);
 			name = IDMPhotoBrowser;
+			path = SHSApp;
 			sourceTree = "<group>";
 		};
 		B2E98A5C19982DE500FA153B /* icon */ = {

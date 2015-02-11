@@ -9,22 +9,11 @@
 #import "SHSStaffDetailViewController.h"
 #import <MessageUI/MessageUI.h>
 
-@interface SHSStaffDetailViewController () <MFMailComposeViewControllerDelegate>
+@interface SHSStaffDetailViewController () <MFMailComposeViewControllerDelegate, UIScrollViewDelegate>
 
 @end
 
-@implementation SHSStaffDetailViewController {
-
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@implementation SHSStaffDetailViewController
 
 - (void)viewDidLoad
 {
@@ -37,14 +26,6 @@
     [_emailButton setTitle:[NSString stringWithFormat:@"Email: %@",[_staffInfo objectForKey:@"Email"]] forState:UIControlStateNormal];
     [_callButton setTitle:[NSString stringWithFormat:@"Call Extension: %@",[_staffInfo objectForKey:@"Extension"]] forState:UIControlStateNormal];
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 
 - (IBAction)emailAction:(id)sender {
     NSString *emailTitle = @"Hi!";
@@ -92,4 +73,5 @@
     SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:[_staffInfo objectForKey:@"Website"]];
     [self.navigationController pushViewController:webViewController animated:YES];
 }
+
 @end
